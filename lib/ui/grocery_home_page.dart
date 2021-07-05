@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:grocery_shop_app_ui/widget/grocery_home_widget.dart';
 
 class GroceryHomePage extends StatefulWidget {
   const GroceryHomePage({Key key}) : super(key: key);
@@ -20,14 +21,7 @@ class _GroceryHomePageState extends State<GroceryHomePage> {
             switch (value) {
               case 0:
                 return SafeArea(
-                  child: Container(
-                    child: Center(
-                      child: Text(
-                        'Page 1',
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    ),
-                  ),
+                  child: GroceryHomeWidget()
                 );
               case 1:
                 return SafeArea(
