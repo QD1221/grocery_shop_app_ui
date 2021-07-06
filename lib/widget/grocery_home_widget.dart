@@ -1,4 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:grocery_shop_app_ui/model/popular_product.dart';
+
+List<PopularProduct> popularProductItems = [
+  PopularProduct(
+      title: "Orange",
+      count: 1,
+      price: 3.99,
+      weight: "1 kilogram",
+      img:
+          "https://cdn.pixabay.com/photo/2016/02/25/17/08/fruit-1222488_960_720.png"),
+  PopularProduct(
+      title: "Orange",
+      count: 1,
+      price: 3.99,
+      weight: "1 kilogram",
+      img:
+          "https://cdn.pixabay.com/photo/2016/02/25/17/08/fruit-1222488_960_720.png"),
+  PopularProduct(
+      title: "Orange",
+      count: 1,
+      price: 3.99,
+      weight: "1 kilogram",
+      img:
+          "https://cdn.pixabay.com/photo/2016/02/25/17/08/fruit-1222488_960_720.png"),
+];
 
 class GroceryHomeWidget extends StatefulWidget {
   const GroceryHomeWidget({Key key}) : super(key: key);
@@ -122,11 +147,111 @@ class _GroceryHomeWidgetState extends State<GroceryHomeWidget> {
               padding: const EdgeInsets.symmetric(vertical: 16),
               child: Container(
                 height: 160,
-                decoration: BoxDecoration(
-                  color: Colors.black
+                width: double.infinity,
+                decoration: BoxDecoration(color: Colors.black),
+                padding: EdgeInsets.all(16),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Buy \$100 and get \$10 off',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    CircleAvatar(
+                      backgroundColor: Color(0xff081500),
+                      child: Icon(
+                        Icons.arrow_forward_ios_outlined,
+                        size: 18,
+                      ),
+                      foregroundColor: Colors.white,
+                    )
+                  ],
                 ),
               ),
-            )
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'Popular product',
+                  style: TextStyle(fontSize: 16, color: Colors.white),
+                ),
+                Text(
+                  'See all',
+                  style: TextStyle(color: Colors.white),
+                )
+              ],
+            ),
+            SizedBox(
+              height: 16,
+            ),
+            GridView.count(
+                crossAxisCount: 2,
+                shrinkWrap: true,
+                mainAxisSpacing: 16,
+                crossAxisSpacing: 16,
+                childAspectRatio: 0.75,
+                children: popularProductItems
+                    .map((e) => Container(
+                          decoration: BoxDecoration(
+                              color: Colors.black,
+                              borderRadius: BorderRadius.circular(12)),
+                          padding: EdgeInsets.symmetric(vertical: 16),
+                          child: Column(
+                            children: [
+                              Image.network(
+                                e.img,
+                                height: 80,
+                              ),
+                              SizedBox(
+                                height: 16,
+                              ),
+                              Text(
+                                e.title,
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                              Text(
+                                'Weight ${e.weight}',
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 10),
+                              ),
+                              SizedBox(height: 16),
+                              Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 24),
+                                child: Container(
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: 8, vertical: 4),
+                                  decoration: BoxDecoration(
+                                      color: _accentColor,
+                                      borderRadius: BorderRadius.circular(24)),
+                                  child: Row(
+                                    children: [
+                                      CircleAvatar(
+                                        radius: 18,
+                                        backgroundColor: Colors.black,
+                                        foregroundColor: Colors.white,
+                                        child: Icon(Icons.add),
+                                      ),
+                                      SizedBox(width: 8),
+                                      Text(
+                                        '\$ ${e.price}',
+                                        style: TextStyle(
+                                            fontSize: 18, color: Colors.white),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        ))
+                    .toList())
           ],
         ),
       ),
